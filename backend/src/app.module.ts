@@ -17,7 +17,11 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL,
+      host: process.env.POSTGRES_HOST,
+      port: 5432,
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       entities: [User, Wish, Wishlist, Offer],
       synchronize: true,
     }),
@@ -29,4 +33,4 @@ import { ConfigModule } from '@nestjs/config';
     HashModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
